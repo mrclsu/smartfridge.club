@@ -1,0 +1,12 @@
+.display-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2%;
+    overflow: hidden;
+    background-color: #3b3f46;
+}
+
+.display-card:hover .post-title{
+    opacity: 1;
+}

@@ -1,51 +1,55 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-
-class LambdaDemo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { loading: false, msg: null };
-  }
-
-  handleClick = api => e => {
-    e.preventDefault();
-
-    this.setState({ loading: true });
-    fetch('/.netlify/functions/' + api)
-      .then(response => response.json())
-      .then(json => this.setState({ loading: false, msg: json.msg }));
-  };
-
-  render() {
-    const { loading, msg } = this.state;
-
-    return (
-      <p>
-        <button onClick={this.handleClick('hello')}>
-          {loading ? 'Loading...' : 'Call Lambda'}
-        </button>
-        <button onClick={this.handleClick('async-chuck-norris')}>
-          {loading ? 'Loading...' : 'Call Async Lambda'}
-        </button>
-        <br />
-        <span>{msg}</span>
-      </p>
-    );
-  }
-}
+import DisplayCard from './components/DisplayCard';
 
 class App extends Component {
+  state = {
+    last: undefined,
+    posts: [],
+    loading: false
+  }
+
+  fetchMore = () => {
+    fetch(`/.netlify/functions/reddit-query-async?last=${this.state.last}`)
+      .then(response => response.json())
+      .then(json => 
+        {
+          
+          if(json.msg){
+            console.log(json.msg);
+            return;
+          }
+          this.setState({ last: json.last, posts: this.state.posts.concat(json.posts), loading: false});
+        });
+  }
+
+
+  componentWillMount(){
+    window.onscroll = () => {
+      if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
+        console.log('hey');
+        if(!this.state.loading){
+          this.setState({loading: true});
+          this.fetchMore();
+        }
+        
+      }
+    }
+  }
+  
+
+  componentDidMount(){
+    fetch('/.netlify/functions/reddit-query-async')
+      .then(response => response.json())
+      .then(json => this.setState({ last: json.last, posts: json.posts}));
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <LambdaDemo />
-        </header>
+      <div className="app">
+        <div className="grid">
+         {this.state.posts.map(post => <DisplayCard title={post.title} url={post.url} permalink={post.permalink} key={post.name}/>)}
+        </div>
       </div>
     );
   }
