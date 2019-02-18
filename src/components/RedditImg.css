@@ -1,0 +1,11 @@
+.reddit-img{
+    border-radius: 5px;
+}
+
+.reddit-img:hover .post-title{
+    display: block;
+}
+
+.post-title{
+    display: none;
+}
