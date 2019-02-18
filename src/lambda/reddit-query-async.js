@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-const base_url = 'https://api.reddit.com/search?q=smart%20fridge&limit=50&type=link';
+const base_url = 'https://api.reddit.com/search?q=smart%20fridge&type=link&sort=new';
 
 export async function handler(event, context) {
 
@@ -11,7 +11,7 @@ export async function handler(event, context) {
     
     console.log(after ? `${base_url}&after=${after}` : base_url)
 
-    const response = await fetch(after ? `${base_url}&after=${after}` : base_url);
+    const response = await fetch(after ? `${base_url}&after=${after}&limit=20` : `${base_url}&limit=50`);
 
     if (!response.ok) {
       // NOT res.status >= 200 && res.status < 300
@@ -23,6 +23,7 @@ export async function handler(event, context) {
     let resArr = [];
     let last = "";
     data.data.children.forEach(post => {
+        if(post.data === undefined || post === undefined) return;
         let postToAdd = {
             'title': post.data.title,
             'url': post.data.url,

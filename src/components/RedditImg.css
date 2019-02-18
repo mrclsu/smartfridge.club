@@ -1,6 +1,8 @@
 
 .reddit-img{
-    height: fit-content;
+    display: flex;
+    align-items: center;
+    height: 100%;
     margin: none;
     position: relative;
     border-radius: 2%;
@@ -13,7 +15,6 @@
 .post-img{
     margin: inherit;
     display: block;
-    height: auto;
     width: 100%;
 }
 
