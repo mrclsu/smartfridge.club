@@ -26,7 +26,7 @@ export async function handler(event, context) {
         if(post.data === undefined || post === undefined) return;
         let postToAdd = {
             'title': post.data.title,
-            'url': post.data.url,
+            'url': post.data.url.replace('http://','https://'),
             'permalink': post.data.permalink,
             'name': post.data.name
         };
