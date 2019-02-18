@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import RedditImg from './RedditImg';
+import './DisplayCard.css'
 
 class DisplayCard extends Component {
+    //todo implement reddit embeds
     render() {
       return (
           <div className='display-card'>

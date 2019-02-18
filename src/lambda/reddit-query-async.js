@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-const base_url = 'https://api.reddit.com/search?q=smart%20fridge';
+const base_url = 'https://api.reddit.com/search?q=smart%20fridge&limit=100&type=link';
 
 export async function handler(event, context) {
 
@@ -29,7 +29,7 @@ export async function handler(event, context) {
             'permalink': post.data.permalink,
             'name': post.data.name
         };
-        if(postToAdd.url) resArr.push(postToAdd);
+        if(postToAdd.url && (postToAdd.url.includes('i.redd.it') || postToAdd.url.includes('i.imgur.com'))) resArr.push(postToAdd);
     });
 
     last = resArr[resArr.length-1].name;
