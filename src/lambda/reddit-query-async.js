@@ -6,12 +6,12 @@ export async function handler(event, context) {
 
   try {
     console.log(event)
-    console.log(event.body)
-    const body = JSON.parse(event.body);
+    console.log(event.queryStringParameters)
+    const after = event.queryStringParameters.last;
     
-    console.log(body.last ? `${base_url}&after=${body.last}` : base_url)
+    console.log(after ? `${base_url}&after=${after}` : base_url)
 
-    const response = await fetch(body.last ? `${base_url}&after=${body.last}` : base_url);
+    const response = await fetch(after ? `${base_url}&after=${after}` : base_url);
 
     if (!response.ok) {
       // NOT res.status >= 200 && res.status < 300
