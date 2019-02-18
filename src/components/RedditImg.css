@@ -1,13 +1,39 @@
 
 .reddit-img{
-    
+    height: fit-content;
+    margin: none;
+    position: relative;
+    border-radius: 2%;
 }
 
 .reddit-img:hover .post-title{
+    opacity: 1;
+}
+
+.post-img{
+    margin: inherit;
     display: block;
-    position: relative;
+    height: auto;
+    width: 100%;
 }
 
 .post-title{
-    display: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    margin: inherit;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    transition: .5s ease-in-out;
+    padding: 5%;
+    background-color: rgba(69, 71, 73, 0.85)
+}
+
+.title-span{
+    color: #f3f3f3
 }

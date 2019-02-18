@@ -3,7 +3,7 @@ a{
   color: inherit;
 }
 
-.App {
+.app {
   padding: 5%;
   text-align: center;
   background-color: #282c34;
@@ -14,3 +14,23 @@ a{
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 15px;
 }
+
+@media only screen and (max-width: 1000px){
+  .grid{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media only screen and (max-width: 850px){
+  .grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 650px){
+  .grid{
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+

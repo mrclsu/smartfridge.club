@@ -18,9 +18,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="app">
         <div className="grid">
-         {this.state.posts.map(post => <DisplayCard title={post.title} url={post.url} permalink={post.permalink}/>)}
+         {this.state.posts.map(post => <DisplayCard title={post.title} url={post.url} permalink={post.permalink} key={post.name}/>)}
         </div>
       </div>
     );
