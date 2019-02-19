@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-const base_url = 'https://api.reddit.com/search?q=smart%20fridge&type=link&sort=new';
+const base_url = 'https://api.reddit.com/search?q=smart%20fridge&type=link';
 
 export async function handler(event, context) {
 

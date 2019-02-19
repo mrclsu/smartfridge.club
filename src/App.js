@@ -26,7 +26,7 @@ class App extends Component {
 
   componentWillMount(){
     window.onscroll = () => {
-      if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
+      if (window.innerHeight + Math.ceil(window.pageYOffset || document.documentElement.scrollTop) === document.documentElement.offsetHeight) {
         console.log('hey');
         if(!this.state.loading){
           this.setState({loading: true});
