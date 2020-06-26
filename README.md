@@ -1,4 +1,4 @@
-# [SmartFridge.club](https://smartfridge.club)
+# [SmartFridge.club](https://smartfridge-club.netlify.app)
 
 
 ## Local Development
